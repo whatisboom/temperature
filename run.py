@@ -1,3 +1,5 @@
+import sys
+sys.path.append("~/python")
 import sensor as s
 import MySQLdb as mdb
 from config import *
