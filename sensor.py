@@ -6,9 +6,12 @@ from config import *
 
 class Temperature(Thread):
 
-	def __init__(self, hwid):
+	def __init__(self, hwid, fnpattern=None):
+		if fnpattern is None:
+			fnpattern = '/sys/bus/w1/devices/{0}/w1_slave'
+
 		self.hwid = hwid
-		self.filename = "/sys/bus/w1/devices/"+hwid+"/w1_slave"
+		self.filename = fnpattern.format(hwid)
 		self.lasttemp = 0
 		Thread.__init__(self)
 	def run(self):
